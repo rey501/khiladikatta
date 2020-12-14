@@ -36,11 +36,11 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    coin: {
+    golds: {
       type: Number,
-      default: 0,
+      default: 50000,
     },
-    ucCoin: {
+    diamonds: {
       type: Number,
       default: 0,
     },

@@ -194,3 +194,15 @@ const sendTokenResponse = (user, statusCode, res) => {
     .cookie("token", token, options)
     .json({ success: true, token, data: user });
 };
+
+///@desc     Add Gold Coin
+//@route    PUT /api/auth/addgold
+//@access   private
+
+exports.addGoldCoin = asyncHandler(async (req, res, next) => {
+  if (req.body.gold) {
+    const user = await User.findByIdAndUpdate(req.user.id, {
+      $inc: { golds: req.body.gold },
+    });
+  }
+});

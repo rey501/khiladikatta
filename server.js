@@ -1,7 +1,7 @@
 const path = require("path");
 const http = require("http");
 const express = require("express");
-const socketio = require("socket.io");
+
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
@@ -33,7 +33,6 @@ const app = express();
 
 //Use for Socket.io
 const server = http.createServer(app);
-const io = socketio(server);
 
 //file upload middleware allways add first
 app.use(fileUpload());
@@ -106,6 +105,3 @@ process.on("unhandledRejection", (err, promise) => {
   //Close server and exit process
   serverException.close(() => process.exit(1));
 });
-
-module.exports = { io };
-require("./socket/index");
