@@ -34,7 +34,11 @@ exports.addPayment = asyncHandler(async (req, res, next) => {
 
   try {
     const response = await razorpay.orders.create(options);
-    await Order.create({ user: user._id,  amount:amount/100, orderId: response.id });
+    await Order.create({
+      user: user._id,
+      amount: amount / 100,
+      orderId: response.id,
+    });
     console.log("This is orde...", response.id);
     res.render("payment", {
       key: process.env.RAZORPAY_KEY,
@@ -94,7 +98,7 @@ exports.successPayment = asyncHandler(async (req, res, next) => {
         ) {
           await Order.findByIdAndUpdate(order._id, {
             status: "success",
-            amount:amount/100,
+            amount: amount / 100,
             paymentId,
           });
 
@@ -122,20 +126,20 @@ exports.successPayment = asyncHandler(async (req, res, next) => {
 //@route   Get /api/payment/view
 //@access  Private
 exports.paymentView = asyncHandler(async (req, res, next) => {
-  
   const user = req.user.id;
 
   const withdraw = await Order.find({ user }).sort({ created_at: -1 });
- 
+
   res.status(200).json({ success: true, data: withdraw });
 });
 
 //@desc    Add coin when User is won
 //@route   Post /api/payment/winAmount
 //@access  Private
-exports.winAmount = asyncHandler(async (req, res, next) => { 
-      const betAmount=req.body.betAmount,   
-      const user = await User.findByIdAndUpdate(req.user.id, {
-        $inc: { amount: betAmount }});
-      return user.amount;
-})
+exports.winAmount = asyncHandler(async (req, res, next) => {
+  const betAmount = req.body.betAmount;
+  const user = await User.findByIdAndUpdate(req.user.id, {
+    $inc: { amount: betAmount },
+  });
+  return user.amount;
+});
