@@ -129,3 +129,13 @@ exports.paymentView = asyncHandler(async (req, res, next) => {
  
   res.status(200).json({ success: true, data: withdraw });
 });
+
+//@desc    Add coin when User is won
+//@route   Post /api/payment/winAmount
+//@access  Private
+exports.winAmount = asyncHandler(async (req, res, next) => { 
+      const betAmount=req.body.betAmount,   
+      const user = await User.findByIdAndUpdate(req.user.id, {
+        $inc: { amount: betAmount }});
+      return user.amount;
+})
