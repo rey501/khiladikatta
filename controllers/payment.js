@@ -138,9 +138,13 @@ exports.paymentView = asyncHandler(async (req, res, next) => {
 //@access  Private
 exports.winAmount = asyncHandler(async (req, res, next) => {
   const betAmount = req.body.betAmount;
-  const user = await User.findByIdAndUpdate(req.user.id, {
-    $inc: { amount: betAmount },
-  });
+  const user = await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      $inc: { golds: betAmount },
+    },
+    { new: true }
+  );
   console.log("UserData", user);
   res.status(200).json({ success: true, data: user });
 });
