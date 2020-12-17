@@ -141,5 +141,6 @@ exports.winAmount = asyncHandler(async (req, res, next) => {
   const user = await User.findByIdAndUpdate(req.user.id, {
     $inc: { amount: betAmount },
   });
-  res.status(200).json({ success: true });
+  console.log("UserData", user);
+  res.status(200).json({ success: true, data: user });
 });
