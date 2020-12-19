@@ -40,9 +40,14 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       default: 50000,
     },
+
     lastReward: {
       type: Number,
       default: 0,
+    },
+    lastRewardTime: {
+      type: Date,
+      default: new Date().getTime(),
     },
     diamonds: {
       type: Number,

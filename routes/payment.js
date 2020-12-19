@@ -12,5 +12,5 @@ router.get("/", addPayment);
 router.post("/success", successPayment);
 router.get("/view", protect, paymentView);
 router.put("/winamount", protect, winAmount);
-router.put("/addreward", addReward);
+router.put("/addreward", protect, addReward);
 module.exports = router;

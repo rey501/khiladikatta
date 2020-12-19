@@ -7,6 +7,7 @@ const { io } = require("../server");
 const shortid = require("shortid");
 const Razorpay = require("razorpay");
 const User = require("../models/User");
+const format = require("format");
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY,
@@ -153,15 +154,37 @@ exports.winAmount = asyncHandler(async (req, res, next) => {
 //@route   Post /api/payment/addReward
 //@access  Private
 exports.addReward = asyncHandler(async (req, res, next) => {
-  const rewardAmount = req.body.rewardAmount;
-  const user = await User.findByIdAndUpdate(
+  //const rewardAmount = req.body.rewardAmount;
+
+  const user = await User.findById(req.user.id);
+  let lastDay =
+    user.updatedAt.getMonth() +
+    1 +
+    "/" +
+    user.updatedAt.getDate() +
+    "/" +
+    user.updatedAt.getFullYear();
+  console.log(lastDay);
+  lastDay = new Date(lastDay).getTime() / 1000 / 60 / 60 / 24;
+  let currentDay = new Date().getTime() / 1000 / 60 / 60 / 24;
+  console.log(lastDay, " : ", currentDay, " : ", currentDay - lastDay);
+  let lastReward = user.lastReward;
+  let rewardAmount = lastReward;
+  if (currentDay - lastDay > 1 && currentDay - lastDay < 2) {
+    if (lastReward > 5000 && lastReward < 50000) rewardAmount += 10000;
+    else if (lastReward === 50000) rewardAmount += 50000;
+    else rewardAmount += 5000;
+  } else {
+    rewardAmount = 5000;
+  }
+  user = await User.findByIdAndUpdate(
     req.user.id,
     {
-      $inc: { golds: betAmount },
+      $inc: { golds: rewardAmount },
       lastReward: rewardAmount,
     },
     { new: true }
   );
-  console.log("UserData", user);
+
   res.status(200).json({ success: true, data: user });
 });
