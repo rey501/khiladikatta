@@ -148,3 +148,20 @@ exports.winAmount = asyncHandler(async (req, res, next) => {
   console.log("UserData", user);
   res.status(200).json({ success: true, data: user });
 });
+
+//@desc    Add coin when User is won
+//@route   Post /api/payment/addReward
+//@access  Private
+exports.addReward = asyncHandler(async (req, res, next) => {
+  const rewardAmount = req.body.rewardAmount;
+  const user = await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      $inc: { golds: betAmount },
+      lastReward: rewardAmount,
+    },
+    { new: true }
+  );
+  console.log("UserData", user);
+  res.status(200).json({ success: true, data: user });
+});

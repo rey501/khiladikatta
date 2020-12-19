@@ -5,10 +5,12 @@ const {
   successPayment,
   paymentView,
   winAmount,
+  addReward,
 } = require("../controllers/payment");
 const router = express.Router();
 router.get("/", addPayment);
 router.post("/success", successPayment);
 router.get("/view", protect, paymentView);
 router.put("/winamount", protect, winAmount);
+router.put("/addreward", addReward);
 module.exports = router;
