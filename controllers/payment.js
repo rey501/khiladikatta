@@ -104,7 +104,7 @@ exports.successPayment = asyncHandler(async (req, res, next) => {
           });
 
           await User.findByIdAndUpdate(order.user, {
-            $inc: { amount: amount / 100 },
+            $inc: { diamonds: amount / 100 },
           });
 
           status = `Payment successfully completed your payment id is ${paymentId}`;

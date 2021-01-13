@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roulette Royal Casino</title>
+    <title>Azee Play</title>
   </head>
   <body>
     <!-- <form action="http://localhost:8000/api/payment/success" method="POST"> 
@@ -30,12 +30,12 @@
         key: "<%=key%>", // Enter the Key ID generated from the Dashboard
         amount: "<%=amount%>", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         currency: "<%=currency%>",
-        name: "Roulette Royal Casino",
+        name: "Azee Play",
         description: "<%=user%>",
         // "image": "https://example.com/your_logo",
         order_id: "<%=order_id%>", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         callback_url:
-          "http://15.207.88.136:5000/api/payment/success?amount=<%=amount%>",
+          "http://13.126.216.49:5000/api/payment/success?amount=<%=amount%>",
         prefill: {
           name: "<%=name%>",
           email: "<%=email%>",
@@ -47,13 +47,13 @@
         theme: {
           color: "#F37254",
         },
-        model:{
-          escape:false,
-      handleback: false,
-      ondismiss: function(){
-        console.log("Check out for close")
-      }
-        }
+        model: {
+          escape: false,
+          handleback: false,
+          ondismiss: function () {
+            console.log("Check out for close");
+          },
+        },
       };
       var rzp1 = new Razorpay(options);
       (function () {
