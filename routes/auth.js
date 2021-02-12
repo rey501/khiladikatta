@@ -5,6 +5,7 @@ const {
   logout,
   getMe,
   updateDetails,
+  updatecoins,
   updatePassword,
   registerFacebook,
 } = require("../controllers/auth");
@@ -16,5 +17,6 @@ router.post("/login", login);
 router.get("/logout", logout);
 router.get("/me", protect, getMe);
 router.put("/updatedetails", protect, updateDetails);
+router.put("/updatecoins", protect, updatecoins);
 router.put("/updatepassword", protect, updatePassword);
 module.exports = router;
