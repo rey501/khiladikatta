@@ -6,6 +6,7 @@ const User = require("../models/User");
 //@route   Post /api/withdrow
 //@access  Private
 exports.withdrawAmount = asyncHandler(async (req, res, next) => {
+  console.log("withdrawAmount |||||| ",req.user.id);
   const user = req.user.id;
   const {
     mobile,
@@ -29,6 +30,7 @@ exports.withdrawAmount = asyncHandler(async (req, res, next) => {
     name,
    // accType,
   });
+  console.log("withdrawAmount |||||| ",amount);
   res.status(200).json({ success: true, data: withdraw });
 });
 
