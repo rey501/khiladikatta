@@ -21,14 +21,13 @@ exports.withdrawAmount = asyncHandler(async (req, res, next) => {
     $inc: { golds: -amount },
   });
   const withdraw = await Withdraw.create({
-    user,
-    mobile,
-    amount,
-    withdrawType,
-    accountNo,
-    ifsc,
-    name,
-   // accType,
+    user:user,
+    mobile:mobile,
+    amount:amount,
+    withdrawType:withdrawType,
+    accountNo:accountNo,
+    ifsc:ifsc,
+    name:name
   });
   console.log("withdrawAmount |||||| ",amount);
   res.status(200).json({ success: true, data: withdraw });
