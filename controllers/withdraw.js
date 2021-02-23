@@ -14,7 +14,7 @@ exports.withdrawAmount = asyncHandler(async (req, res, next) => {
     accountNo,
     ifsc,
     name,
-    accType,
+   // accType,
   } = req.body;
   await User.findByIdAndUpdate(user, {
     $inc: { amount: -amount },
@@ -27,7 +27,7 @@ exports.withdrawAmount = asyncHandler(async (req, res, next) => {
     accountNo,
     ifsc,
     name,
-    accType,
+   // accType,
   });
   res.status(200).json({ success: true, data: withdraw });
 });
