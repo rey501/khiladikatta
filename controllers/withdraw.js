@@ -18,7 +18,7 @@ exports.withdrawAmount = asyncHandler(async (req, res, next) => {
    // accType,
   } = req.body;
   await User.findByIdAndUpdate(user, {
-    $inc: { amount: -amount },
+    $inc: { golds: -amount },
   });
   const withdraw = await Withdraw.create({
     user,
