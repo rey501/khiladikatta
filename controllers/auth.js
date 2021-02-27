@@ -152,6 +152,8 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
 });
 
 exports.updatename = asyncHandler(async (req, res, next) => {
+  console.log("updatename   ",req.user.id);
+  console.log("updatename   ",req.body.name);
   const fieldsToUpdate = {
     name: req.body.name
   };
