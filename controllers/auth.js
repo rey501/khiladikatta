@@ -169,7 +169,7 @@ exports.updatename = asyncHandler(async (req, res, next) => {
 exports.updateImage = asyncHandler(async (req, res, next) => {
   var buf = Buffer.from(req.body.photo_data, "base64");
   fs.writeFile(
-    "./userphotos/" + info.userid + ".png",
+    "./khiladikatta/userphotos/" + info.userid + ".png",
     buf,
     function (err) {
       if (err) throw err;
