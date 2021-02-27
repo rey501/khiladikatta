@@ -19,4 +19,5 @@ router.get("/me", protect, getMe);
 router.put("/updatedetails", protect, updateDetails);
 router.put("/updatecoins", protect, updatecoins);
 router.put("/updatepassword", protect, updatePassword);
+router.put("/updatename", protect, updatename)
 module.exports = router;
