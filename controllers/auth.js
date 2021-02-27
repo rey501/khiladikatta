@@ -186,7 +186,7 @@ exports.updateImage = asyncHandler(async (req, res, next) => {
         const fieldsToUpdate = {
           profilePic: url
         };
-        const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+        const user = User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
           new: true,
           runValidators: true,
         });
