@@ -5,6 +5,7 @@ const {
   logout,
   getMe,
   updateDetails,
+  updatename,
   updatecoins,
   updatePassword,
   registerFacebook,

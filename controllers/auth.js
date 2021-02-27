@@ -150,6 +150,7 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
   });
   res.status(200).json({ success: true, data: user });
 });
+
 exports.updatename = asyncHandler(async (req, res, next) => {
   const fieldsToUpdate = {
     name: req.body.name
