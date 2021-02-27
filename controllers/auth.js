@@ -1,7 +1,9 @@
 const asyncHandler = require("../middleware/async");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
-
+const fs = require("fs");
+var serverip = "65.1.147.77";
+var port = "5000";
 //@desc    Register a User
 //@route   Post /api/auth
 //@access  Public
@@ -162,6 +164,36 @@ exports.updatename = asyncHandler(async (req, res, next) => {
     runValidators: true,
   });
   res.status(200).json({ success: true, data: user });
+});
+
+exports.updateImage = asyncHandler(async (req, res, next) => {
+  var buf = Buffer.from(req.body.photo_data, "base64");
+  fs.writeFile(
+    "./userphotos/" + info.userid + ".png",
+    buf,
+    function (err) {
+      if (err) throw err;
+      console.log("Photo Saved!");
+      var url =
+        "http://" +
+        serverip +
+        ":" +
+        port +
+        "/userphotos/" +
+        info.userid +
+        ".png";
+
+        const fieldsToUpdate = {
+          profilePic: url
+        };
+        const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+          new: true,
+          runValidators: true,
+        });
+        res.status(200).json({ success: true, data: user });
+    }
+  );
+  
 });
 
 ///@desc     Update Coins after game

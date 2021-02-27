@@ -6,6 +6,7 @@ const {
   getMe,
   updateDetails,
   updatename,
+  updateImage,
   updatecoins,
   updatePassword,
   registerFacebook,
@@ -21,4 +22,5 @@ router.put("/updatedetails", protect, updateDetails);
 router.put("/updatecoins", protect, updatecoins);
 router.put("/updatepassword", protect, updatePassword);
 router.put("/updatename", protect, updatename)
+router.put("/updateImage", protect, updateImage)
 module.exports = router;
